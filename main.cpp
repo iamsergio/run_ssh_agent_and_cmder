@@ -16,7 +16,7 @@ int main(int a, char **b)
     QRegularExpression re("SSH_AUTH_SOCK=(.*?);.*Agent pid (.*);");
     QRegularExpressionMatch match = re.match(output);
     if (match.hasMatch()) {
-        QString path = "c:\\d\\installation\\msys2\\" + match.captured(1);
+        QString path = match.captured(1);
         qputenv("SSH_AUTH_SOCK", path.toLatin1());
         qputenv("SSH_AGENT_PID", match.captured(2).toLatin1());
         QProcess::startDetached("C:\\d\\installation\\cmder\\cmder.exe");
